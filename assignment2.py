@@ -16,15 +16,14 @@ def functionTimer(f, input):
 def graphFunction(f, start, end, numPoints, file):
 	f_out = open(file, "w+")
 	inputvalue = start
-	increment = (end-start)/numPoints
+	increment = (end-start)//numPoints
 	for i in range(numPoints):
 		outputvalue = functionTimer(f, inputvalue)
 		f_out.write(str(inputvalue) + " , " + str(outputvalue) + "\n")
-		inputValue += increment
+		inputvalue += increment
+	f_out.close()
 
 def func1(data):
-	return data.reverse()
+	return sum(range(data))
 
-print(functionTimer(func1, dataSet1))
-print(functionTimer(func1, dataSet2))
-print(functionTimer(func1, dataSet3))
+graphFunction(func1, 2, 10**6, 10, "graph.csv")
