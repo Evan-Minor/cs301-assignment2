@@ -1,0 +1,4 @@
+CS301
+Assignment 2
+
+Experimentally determine the running time of list and dictionary operations in Python. Write a report explaining what you found, and draw whatever conclusions you can about how lists and dictionaries might be structured ino order to give this behavior. You will probably find it useful to write a function that produces a .csv file of data about the behavior of a given function and then to use Excel to plot the data and find a curve that fits it.
