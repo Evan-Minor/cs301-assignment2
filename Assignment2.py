@@ -38,6 +38,24 @@ def func1(data):
 	return sum(range(data))
 
 
+
+def getFirstElement(data):
+    """
+    Returns first element of the list or dictionary.
+    """
+    return data[0]
+
+
+def numOfElements(data):
+    """
+    Returns the number of elements in the list or dictionary.
+    """
+    numOfElements = 0
+    for element in data:
+        numOfElements += 1
+    return numOfElements
+
+
 def main():
     # dataSet1 = [x for x in range(10**3)]
     # dataSet2 = [x for x in range(10**6)]
