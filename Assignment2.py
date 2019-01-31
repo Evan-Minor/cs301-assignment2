@@ -55,6 +55,22 @@ def createDictionary(fileName,numItems):
     #return the dictionary
     return dictionary
 
+def testTimeFunction(f1, input1, input11, f2, input2, input22):
+    #Function 1 times
+    startf1 = time.time()
+    f1(input1)
+    endf1 = time.time()
+    #Function 2 times
+    startf2 = time.time()
+    f2(input2, input22)
+    endf2 = time.time()
+    #total times
+    totaltimef1 = endf1-startf1
+    totaltimef2 = endf2-startf2
+    #compare total times
+    finalTimes = {f1:totaltimef1, f2: totaltimef2}
+    return finalTimes
+
 def main():
     # dataSet1 = [x for x in range(10**3)]
     # dataSet2 = [x for x in range(10**6)]
