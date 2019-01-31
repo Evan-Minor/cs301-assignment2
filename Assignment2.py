@@ -71,6 +71,39 @@ def numOfElements(data):
         numOfElements += 1
     return numOfElements
 
+def createDictionary(fileName,numItems):
+    #Create counter variable and initiate dictionary
+    dictionary = []
+    count = 0
+    #open the file and read lines
+    with open(fileName) as f:
+        words = f.read().splitlines()
+    #creat a loop that adds to the dictionary 
+    for i in words:
+        temp ={count: i}
+        dictionary.append(temp)
+        count +=1
+        #check to see if you have reached your number of items
+        if  count == numItems:
+            break
+    #return the dictionary
+    return dictionary
+
+def testTimeFunction(f1, input1, input11, f2, input2, input22):
+    #Function 1 times
+    startf1 = time.time()
+    f1(input1)
+    endf1 = time.time()
+    #Function 2 times
+    startf2 = time.time()
+    f2(input2, input22)
+    endf2 = time.time()
+    #total times
+    totaltimef1 = endf1-startf1
+    totaltimef2 = endf2-startf2
+    #compare total times
+    finalTimes = {f1:totaltimef1, f2: totaltimef2}
+    return finalTimes
 
 def main():
     # dataSet1 = []
