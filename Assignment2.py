@@ -37,6 +37,23 @@ def graphFunction(f, input_start, input_end, numPoints, output_file_name):
 def func1(data):
 	return sum(range(data))
 
+def createDictionary(fileName,numItems):
+    #Create counter variable and initiate dictionary
+    dictionary = []
+    count = 0
+    #open the file and read lines
+    with open(fileName) as f:
+        words = f.read().splitlines()
+    #creat a loop that adds to the dictionary 
+    for i in words:
+        temp ={count: i}
+        dictionary.append(temp)
+        count +=1
+        #check to see if you have reached your number of items
+        if  count == numItems:
+            break
+    #return the dictionary
+    return dictionary
 
 def main():
     # dataSet1 = [x for x in range(10**3)]
