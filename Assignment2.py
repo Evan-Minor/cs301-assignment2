@@ -28,14 +28,48 @@ def graphFunction(f, input_start, input_end, numPoints, output_file_name):
     input_value = input_start  # Init input
     increment = (input_end-input_start) // numPoints
     for i in range(numPoints):
-        runtime = functionTimer(f, input_value)
+        dataList = listConverter(input_value)
+        runtime = functionTimer(f, dataList)
         file_out.write(f"{str(input_value)},{str(runtime)}\n")
         input_value += increment
     file_out.close()
 
+def listConverter(amount):
+    values = []
+    times = 0
+    with open("words.txt") as fi:
+        for line in fi:
+            if times > amount:
+                return values
+            else:
+                values.append(line.strip())
+                times += 1
 
-def func1(data):
-	return sum(range(data))
+def listFunc1(data):
+    return data.append("foo")
+
+def listFunc2(data):
+    return data.sort()
+
+def listFunc3(data):
+    return [l + "foo" for l in data]
+
+
+def getFirstElement(data):
+    """
+    Returns first element of the list or dictionary.
+    """
+    return data[0]
+
+
+def numOfElements(data):
+    """
+    Returns the number of elements in the list or dictionary.
+    """
+    numOfElements = 0
+    for element in data:
+        numOfElements += 1
+    return numOfElements
 
 def createDictionary(fileName,numItems):
     #Create counter variable and initiate dictionary
@@ -72,15 +106,16 @@ def testTimeFunction(f1, input1, input11, f2, input2, input22):
     return finalTimes
 
 def main():
-    # dataSet1 = [x for x in range(10**3)]
-    # dataSet2 = [x for x in range(10**6)]
-    # dataSet3 = [x for x in range(10**7)]
+    # dataSet1 = []
+    # dataSet2 = []
+    # dataSet3 = []
     # dataSet4 = {x for x in range(10**3)}
     # dataSet5 = {x for x in range(10**4)}
     # dataSet6 = {x for x in range(10**5)}
 
-    graphFunction(func1, 2, 10**6, 10, "graph.csv")
-
+    graphFunction(listFunc1, 1, 1000, 10, "graph.csv")
+    graphFunction(listFunc2, 1, 113809, 15, "graph1.csv")
+    graphFunction(listFunc3, 1, 113809, 15, "graph2.csv")
 
 if __name__ == "__main__":
     main()
