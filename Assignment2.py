@@ -23,20 +23,30 @@ def functionTimer(f, input):
     return time2 - time1
 
 
-def graphFunction(f, input_data, input_start, input_end, numPoints, output_file_name):
+def graphFunction_List(f, input_start, input_end, numPoints, output_file_name):
     """
     Writes input, runtimes of f(input) for numPoints 
     to output_file_name.
     """
     file_out = open(output_file_name, "w+")
-    end_of_splice = 1
-    input_value = input_data[input_start-1:end_of_splice]  # Init input
+    input_value = input_start  # Init input
     increment = (input_end-input_start) // numPoints
     for i in range(numPoints):
-        #dataList = listConverter(input_value)
-        runtime = functionTimer(f, input_value)
-        file_out.write(f"{str(len(input_data))},{str(runtime)}\n")
-        end_of_splice += increment
+        dataList = listConverter(input_value)
+        runtime = functionTimer(f, dataList)
+        file_out.write(f"{str(len(dataList))},{str(runtime)}\n")
+        input_value += increment
+    file_out.close()
+
+def graphFunction_Dictionary(f, input_start, input_end, numPoints, output_file_name):
+    file_out = open(output_file_name, "w+")
+    input_value = input_start  # Init input
+    increment = (input_end-input_start) // numPoints
+    for i in range(numPoints):
+        data_dict = createDictionary("words.txt",input_value)
+        runtime = functionTimer(f, data_dict)
+        file_out.write(f"{str(len(data_dict))},{str(runtime)}\n")
+        input_value += increment
     file_out.close()
 
 
@@ -131,18 +141,9 @@ def main():
     #print(dict_data_structure)
 
     # Get graph data for different functions
-    graphFunction(listFunc1, list_data_structure, 1, length_of_list, 15, "listFunc1.csv")
-    graphFunction(listFunc1, dict_data_structure, 1, length_of_list, 15, "listFunc1.csv")
+    graphFunction_List(listFunc1, 1, 1000, 15, "listFunc1.csv")
+    graphFunction_Dictionary(listFunc1, 1, 1000, 15, "dictFunc1.csv")
     
-    graphFunction(listFunc2, list_data_structure, 1, length_of_list, 15, "listFunc2.csv")
-    #graphFunction(listFunc2, dict_data_structure, 1, length_of_list, 15, "listFunc2.csv")
-
-    graphFunction(listFunc3, list_data_structure, 1, length_of_list, 15, "listFunc3.csv")
-    #graphFunction(listFunc3, dict_data_structure, 1, length_of_list, 15, "listFunc3.csv")
-
-    graphFunction(getFirstElement, list_data_structure, 1, length_of_list, 15, "getFirstElement.csv")
-    graphFunction(getFirstElement, dict_data_structure, 1, length_of_list, 15, "getFirstElement.csv")
-
 
 if __name__ == "__main__":
     main()
