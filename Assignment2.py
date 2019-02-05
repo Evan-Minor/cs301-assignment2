@@ -73,15 +73,15 @@ def numOfElements(data):
 
 def createDictionary(fileName,numItems):
     #Create counter variable and initiate dictionary
-    dictionary = []
+    dictionary = {}
     count = 0
     #open the file and read lines
     with open(fileName) as f:
         words = f.read().splitlines()
     #creat a loop that adds to the dictionary 
     for i in words:
-        temp ={count: i}
-        dictionary.append(temp)
+        #temp ={count: i}
+        dictionary[count] = i
         count +=1
         #check to see if you have reached your number of items
         if  count == numItems:
