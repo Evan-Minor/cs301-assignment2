@@ -38,6 +38,7 @@ def graphFunction_List(f, input_start, input_end, numPoints, output_file_name):
         input_value += increment
     file_out.close()
 
+
 def graphFunction_Dictionary(f, input_start, input_end, numPoints, output_file_name):
     file_out = open(output_file_name, "w+")
     input_value = input_start  # Init input
@@ -65,17 +66,17 @@ def listConverter(amount):
                 values.append(line.strip())
                 times += 1
 
+
 def createDictionary(fileName,numItems):
     #Create counter variable and initiate dictionary
-    dictionary = []
+    dictionary = {}
     count = 0
     #open the file and read lines
     with open(fileName) as f:
         words = f.read().splitlines()
     #creat a loop that adds to the dictionary 
     for i in words:
-        temp ={count: i}
-        dictionary.append(temp)
+        dictionary[count] = i
         count +=1
         #check to see if you have reached your number of items
         if  count == numItems:
@@ -85,27 +86,38 @@ def createDictionary(fileName,numItems):
 
 
 #
-#   Things to do to list
+#   Things to do to a list
 #
 
-def listFunc1(data):
+def appendFoo_list(data):
+    """
+    Adds 'foo' to the end of the given list.
+    """
     return data.append("foo")
 
-def listFunc2(data):
+
+def sort_list(data):
+    """
+    Returns a sorted version of the given list.
+    """
     return data.sort()
 
-def listFunc3(data):
+
+def concatentateFooToEachElement_list(data):
+    """
+    Adds 'foo' the each element in the given list. The element must be a string.
+    """
     return [l + "foo" for l in data]
 
 
-def getFirstElement(data):
+def getFirstElement_list(data):
     """
-    Returns first element of the list or dictionary.
+    Returns first element of the list.
     """
     return data[0]
 
 
-def numOfElements(data):
+def countNumOfElements_list(data):
     """
     Returns the number of elements in the list or dictionary.
     """
@@ -114,15 +126,79 @@ def numOfElements(data):
         numOfElements += 1
     return numOfElements
 
+
+def lengthOf_list(data):
+    """
+    Returns the length of the given list.
+    """
+    return len(data)
+
+def getLastElement_list(data):
+    """
+    Returns the last element of the list.
+    """
+    return data[-1]
+
+
 #
-#   Things to do to dictionaries
+#   Things to do to a dictionary
 #
 
-def dictFunc1(data):
-    pass
+def appendFoo_dict(data):
+    """
+    Adds 'foo' to dict.
+    """
+    data[len(data)] = "foo"
+    return True
 
 
+def sort_dict(data):
+    """
+    Dictionaries are insertion ordered as of Python 3.7, they cannot be sorted.
+    """
+    return False
 
+
+def concatentateFooToEachElement_dict(data):
+    """
+    Adds 'foo' to each element in the given dictionary. The element must be a string.
+    """
+    for index in data:
+        data[index] = data[index] + "foo"
+    return True
+
+
+def getFirstElement_dict(data):
+    """
+    Gets first element from the given dictionary.
+    """
+    return data[0]
+
+
+def countNumOfElements_dict(data):
+    """
+    Counts the number of Elements in a dictionary.
+    """
+    numElements = 0
+    for element in data:
+        numElements += 1
+    return numElements
+
+
+def lengthOf_dict(data):
+    """
+    Returns the length of a dictionary.
+    """
+    return len(data)
+
+
+def getLastElement_dict(data):
+    """
+    Returns the last element of a dictionary.
+    """
+    last_key = list(data.keys())[-1]
+    return data[last_key]
+    
 
 def main():
 
@@ -133,16 +209,32 @@ def main():
     # Create List from file
     print("Creating list...")
     list_data_structure = listConverter(length_of_list)
-    #print(list_data_structure)
 
     # Create dict from file
-    print("Creating dictionary")
+    print("Creating dictionary...")
     dict_data_structure = createDictionary(file_name,length_of_list)
-    #print(dict_data_structure)
 
     # Get graph data for different functions
-    graphFunction_List(listFunc1, 1, 1000, 15, "listFunc1.csv")
-    graphFunction_Dictionary(listFunc1, 1, 1000, 15, "dictFunc1.csv")
+    graphFunction_List(appendFoo_list, 1, 1000, 15, "appendFoo_list.csv")
+    graphFunction_Dictionary(appendFoo_dict, 1, 1000, 15, "appendFoo_dict.csv")
+
+    graphFunction_List(sort_list, 1, 1000, 15, "sort_list.csv")
+    graphFunction_Dictionary(sort_dict, 1, 1000, 15, "sort_dict.csv")
+
+    graphFunction_List(concatentateFooToEachElement_list, 1, 1000, 15, "concatenateFooToEachElement_list.csv")
+    graphFunction_Dictionary(concatentateFooToEachElement_dict, 1, 1000, 15, "concatenateFooToEachElement_dict.csv")
+
+    graphFunction_List(getFirstElement_list, 1, 1000, 15, "getFirstElement_list.csv")
+    graphFunction_Dictionary(getFirstElement_dict, 1, 1000, 15, "getFirstElement_dict.csv")
+
+    graphFunction_List(countNumOfElements_list, 1, 1000, 15, "countNumOfElements_list.csv")
+    graphFunction_Dictionary(countNumOfElements_dict, 1, 1000, 15, "countNumOfElements_dict.csv")
+
+    graphFunction_List(lengthOf_list, 1, 1000, 15, "lengthOf_list.csv")
+    graphFunction_Dictionary(lengthOf_dict, 1, 1000, 15, "lengthOf_dict.csv")
+
+    graphFunction_List(getLastElement_list, 1, 1000, 15, "getLastElement_list.csv")
+    graphFunction_Dictionary(getLastElement_dict, 1, 1000, 15, "getLastElement_dict.csv")
     
 
 if __name__ == "__main__":
