@@ -7,7 +7,7 @@
 # 
 
 import time
-
+import os
 
 #
 #   Comparison functions and output data to csv
@@ -200,41 +200,40 @@ def getLastElement_dict(data):
     return data[last_key]
     
 
-def main():
+def main(number_of_elements=100000):
 
     # List and Dict preparation
     file_name = "words.txt"
-    length_of_list = 100000
+    if not os.path.exists("csvs/"):
+        os.mkdirs("csvs/")
 
-    # Create List from file
-    print("Creating list...")
-    list_data_structure = listConverter(length_of_list)
+    # # Create List from file
+    # list_data_structure = listConverter(number_of_elements)
 
-    # Create dict from file
-    print("Creating dictionary...")
-    dict_data_structure = createDictionary(file_name,length_of_list)
+    # # Create dict from file
+    # dict_data_structure = createDictionary(file_name,number_of_elements)
 
     # Get graph data for different functions
-    graphFunction_List(appendFoo_list, 1, 1000, 15, "appendFoo_list.csv")
-    graphFunction_Dictionary(appendFoo_dict, 1, 1000, 15, "appendFoo_dict.csv")
+    graphFunction_List(appendFoo_list, 1, number_of_elements, 15, "csvs/appendFoo_list.csv")
+    graphFunction_Dictionary(appendFoo_dict, 1, number_of_elements, 15, "csvs/appendFoo_dict.csv")
 
-    graphFunction_List(sort_list, 1, 1000, 15, "sort_list.csv")
-    graphFunction_Dictionary(sort_dict, 1, 1000, 15, "sort_dict.csv")
+    graphFunction_List(sort_list, 1, number_of_elements, 15, "csvs/sort_list.csv")
+    graphFunction_Dictionary(sort_dict, 1, number_of_elements, 15, "csvs/sort_dict.csv")
 
-    graphFunction_List(concatentateFooToEachElement_list, 1, 1000, 15, "concatenateFooToEachElement_list.csv")
-    graphFunction_Dictionary(concatentateFooToEachElement_dict, 1, 1000, 15, "concatenateFooToEachElement_dict.csv")
+    graphFunction_List(concatentateFooToEachElement_list, 1, number_of_elements, 15, "csvs/concatenateFooToEachElement_list.csv")
+    graphFunction_Dictionary(concatentateFooToEachElement_dict, 1, number_of_elements, 15, "csvs/concatenateFooToEachElement_dict.csv")
 
-    graphFunction_List(getFirstElement_list, 1, 1000, 15, "getFirstElement_list.csv")
-    graphFunction_Dictionary(getFirstElement_dict, 1, 1000, 15, "getFirstElement_dict.csv")
+    graphFunction_List(getFirstElement_list, 1, number_of_elements, 15, "csvs/getFirstElement_list.csv")
+    graphFunction_Dictionary(getFirstElement_dict, 1, number_of_elements, 15, "csvs/getFirstElement_dict.csv")
 
-    graphFunction_List(countNumOfElements_list, 1, 1000, 15, "countNumOfElements_list.csv")
-    graphFunction_Dictionary(countNumOfElements_dict, 1, 1000, 15, "countNumOfElements_dict.csv")
+    graphFunction_List(countNumOfElements_list, 1, number_of_elements, 15, "csvs/countNumOfElements_list.csv")
+    graphFunction_Dictionary(countNumOfElements_dict, 1, number_of_elements, 15, "csvs/countNumOfElements_dict.csv")
 
-    graphFunction_List(lengthOf_list, 1, 1000, 15, "lengthOf_list.csv")
-    graphFunction_Dictionary(lengthOf_dict, 1, 1000, 15, "lengthOf_dict.csv")
+    graphFunction_List(lengthOf_list, 1, number_of_elements, 15, "csvs/lengthOf_list.csv")
+    graphFunction_Dictionary(lengthOf_dict, 1, number_of_elements, 15, "csvs/lengthOf_dict.csv")
 
-    graphFunction_List(getLastElement_list, 1, 1000, 15, "getLastElement_list.csv")
-    graphFunction_Dictionary(getLastElement_dict, 1, 1000, 15, "getLastElement_dict.csv")
+    graphFunction_List(getLastElement_list, 1, number_of_elements, 15, "csvs/getLastElement_list.csv")
+    graphFunction_Dictionary(getLastElement_dict, 1, number_of_elements, 15, "csvs/getLastElement_dict.csv")
     
 
 if __name__ == "__main__":
