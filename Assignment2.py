@@ -139,6 +139,11 @@ def getLastElement_list(data):
     """
     return data[-1]
 
+def reverse_list(mylist):
+    """
+    Reverses the list
+    """
+    return mylist.reverse()
 
 #
 #   Things to do to a dictionary
