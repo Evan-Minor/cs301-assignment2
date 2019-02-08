@@ -145,6 +145,24 @@ def reverse_list(data):
     """
     return data.reverse()
 
+def addFooMiddle_list(data):
+    """
+    Adds 'foo' to element in middle of list
+    """
+    return data.insert((len(data)//2), "foo")
+
+def removeMiddleElement_list(data):
+    """
+    Removes element in middle of list.
+    """
+    del data[(len(data))//2]
+
+def getMiddleElement_list(data):
+    """
+    Removes element in middle of list.
+    """
+    return data[(len(data))//2]
+
 #
 #   Things to do to a dictionary
 #
@@ -203,14 +221,35 @@ def getLastElement_dict(data):
     """
     last_key = list(data.keys())[-1]
     return data[last_key]
-    
+
+def addFooMiddle_dict(data):
+    """
+    Dictionaries cannot add to the "middle".
+    """
+    return False
+
+def removeMiddleElement_dict(data):
+    """
+    Removes the middle element of a dictionary.
+    """
+    keys_list = list(data.keys())
+    middle_key = keys_list[(len(keys_list))//2]
+    data.pop(middle_key)
+
+def getMiddleElement_dict(data):
+    """
+    Returns middle element of a dictionary.
+    """
+    keys_list = list(data.keys())
+    middle_key = keys_list[(len(keys_list))//2]
+    return data[middle_key]
 
 def main(number_of_elements=100000):
 
     # List and Dict preparation
     file_name = "words.txt"
     if not os.path.exists("csvs/"):
-        os.mkdirs("csvs/")
+        os.mkdir("csvs/")
 
     # # Create List from file
     # list_data_structure = listConverter(number_of_elements)
@@ -239,6 +278,15 @@ def main(number_of_elements=100000):
 
     graphFunction_List(getLastElement_list, 1, number_of_elements, 15, "csvs/getLastElement_list.csv")
     graphFunction_Dictionary(getLastElement_dict, 1, number_of_elements, 15, "csvs/getLastElement_dict.csv")
+
+    graphFunction_List(addFooMiddle_list, 1, number_of_elements, 15, "csvs/addFooMiddle_list.csv")
+    graphFunction_Dictionary(addFooMiddle_dict, 1, number_of_elements, 15, "csvs/addFooMiddle_dict.csv")
+
+    graphFunction_List(removeMiddleElement_list, 1, number_of_elements, 15, "csvs/removeMiddleElement_list.csv")
+    graphFunction_Dictionary(removeMiddleElement_dict, 1, number_of_elements, 15, "csvs/removeMiddleElement_dict.csv")
+
+    graphFunction_List(getMiddleElement_list, 1, number_of_elements, 15, "csvs/getMiddleElement_list.csv")
+    graphFunction_Dictionary(getMiddleElement_dict, 1, number_of_elements, 15, "csvs/getMiddleElement_dict.csv")
     
 
 if __name__ == "__main__":
